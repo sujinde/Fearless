@@ -6,11 +6,11 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true"
-	tools:context="org.sujinde.fearless.MainActivity">
+	tools:context="org.sujinde.activity.MainActivity">
 
 	<android.support.design.widget.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="57dp"
 		android:theme="@style/AppTheme.AppBarOverlay">
 
 		<android.support.v7.widget.Toolbar
@@ -22,7 +22,11 @@
 
 	</android.support.design.widget.AppBarLayout>
 
-	<include layout="@layout/content_main"/>
+	<FrameLayout
+		android:id="@+id/container_main"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="57dp"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"

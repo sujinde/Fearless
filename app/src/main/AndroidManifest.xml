@@ -2,14 +2,16 @@
 <manifest package="org.sujinde.fearless"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<uses-permission android:name="android.permission.INTERNET"/>
 	<application
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
+		android:name="org.sujinde.global.FearlessApp"
 		android:theme="@style/AppTheme">
 		<activity
-			android:name=".MainActivity"
+			android:name="org.sujinde.activity.MainActivity"
 			android:label="@string/app_name"
 			android:theme="@style/AppTheme.NoActionBar">
 			<intent-filter>
