@@ -5,4 +5,6 @@ package org.sujinde.presenter.pi;
  */
 public interface MainInterface {
 	void rxJava();
+
+	void testNet();
 }

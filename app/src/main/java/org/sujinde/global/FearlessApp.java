@@ -3,6 +3,7 @@ package org.sujinde.global;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -22,6 +23,11 @@ public class FearlessApp extends Application {
 		super.onCreate();
 		context = getApplicationContext();
 		initLogger();
+		initStethoscope();
+	}
+
+	void initStethoscope() {
+		Stetho.initializeWithDefaults(this);
 	}
 
 	void initLogger() {

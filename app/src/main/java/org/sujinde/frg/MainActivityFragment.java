@@ -40,6 +40,8 @@ public class MainActivityFragment extends Fragment implements MainViewIF {
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		mainPresenter.rxJava();
+//		mainPresenter.testNet();
+
 	}
 
 	@Override

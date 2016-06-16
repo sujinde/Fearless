@@ -1,13 +1,19 @@
 package org.sujinde.presenter;
 
 import org.sujinde.frg.MainActivityFragment;
+import org.sujinde.model.QRResult;
 import org.sujinde.model.User;
+import org.sujinde.network.BaiduApi;
+import org.sujinde.network.BaiduService;
 import org.sujinde.network.GitHubApi;
 import org.sujinde.network.GitHubService;
 import org.sujinde.presenter.pi.MainInterface;
 import org.sujinde.utils.Logg;
 import org.sujinde.whatever.Practise;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -42,7 +48,51 @@ public class MainPresenter implements MainInterface {
 
 			@Override
 			public void onNext(User user) {
-				Logg.d(user.email);
+				Logg.d(user.getEmail() + "fuck");
+			}
+		});
+		gitHubApi.user2("sujinde").enqueue(new Callback<User>() {
+			@Override
+			public void onResponse(Call<User> call, Response<User> response) {
+				Logg.i(response.body().getEmail());
+			}
+
+			@Override
+			public void onFailure(Call<User> call, Throwable t) {
+				t.printStackTrace();
+			}
+		});
+	}
+
+	@Override
+	public void testNet() {
+		BaiduApi baiduApi = BaiduService.createBaiduService();
+		baiduApi.get2().enqueue(new Callback<QRResult>() {
+			@Override
+			public void onResponse(Call<QRResult> call, Response<QRResult> response) {
+				Logg.i(response.message() + "--fuck");
+			}
+
+			@Override
+			public void onFailure(Call<QRResult> call, Throwable t) {
+				Logg.i("Failed--");
+				t.printStackTrace();
+			}
+		});
+		baiduApi.get().subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<QRResult>() {
+			@Override
+			public void onCompleted() {
+
+			}
+
+			@Override
+			public void onError(Throwable e) {
+
+			}
+
+			@Override
+			public void onNext(QRResult qrResult) {
+				Logg.i(qrResult.getData() + "--Yes");
 			}
 		});
 	}
