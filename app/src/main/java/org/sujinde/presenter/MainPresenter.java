@@ -1,5 +1,9 @@
 package org.sujinde.presenter;
 
+import com.trello.rxlifecycle.ActivityEvent;
+import com.trello.rxlifecycle.FragmentEvent;
+import com.trello.rxlifecycle.RxLifecycle;
+
 import org.sujinde.frg.MainActivityFragment;
 import org.sujinde.helpers.GlideHep;
 import org.sujinde.model.QRResult;
@@ -26,6 +30,7 @@ import dagger.Lazy;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -124,5 +129,9 @@ public class MainPresenter implements MainInterface {
 	@Override
 	public void testRxBus() {
 		RBUtil.getInstance().send("Hello World !");
+	}
+
+	void testRxLifecycle() {
+
 	}
 }

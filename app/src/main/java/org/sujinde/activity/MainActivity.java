@@ -10,14 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+
 import org.sujinde.fearless.R;
 import org.sujinde.frg.MainActivityFragment;
 import org.sujinde.helpers.FrgHep;
+import org.sujinde.utils.Logg;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.functions.Action0;
+import rx.functions.Action1;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RxAppCompatActivity {
 	@Bind(R.id.toolbar)
 	Toolbar toolbar;
 	@Bind(R.id.fab)
@@ -39,11 +47,33 @@ public class MainActivity extends AppCompatActivity {
 						.setAction("Action", null).show();
 			}
 		});
+		Observable.interval(2, TimeUnit.SECONDS).doOnUnsubscribe(new Action0() {
+			@Override
+			public void call() {
+				Logg.i("UnSubscribing from onCreate()");
+			}
+		}).compose(this.<Long>bindToLifecycle()).subscribe(new Action1<Long>() {
+			@Override
+			public void call(Long aLong) {
+				Logg.i("Damn Administration");
+			}
+		});
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		Observable.interval(2, TimeUnit.SECONDS).doOnUnsubscribe(new Action0() {
+			@Override
+			public void call() {
+				Logg.i("UnSubscribing from onStart()");
+			}
+		}).compose(this.<Long>bindToLifecycle()).subscribe(new Action1<Long>() {
+			@Override
+			public void call(Long aLong) {
+				Logg.i("Damn HR");
+			}
+		});
 	}
 
 

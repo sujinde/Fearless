@@ -10,15 +10,22 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
+import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle.components.support.RxAppCompatDialogFragment;
 
 import org.sujinde.fearless.R;
 import org.sujinde.helpers.GlideHep;
 import org.sujinde.presenter.MainPresenter;
+import org.sujinde.utils.Logg;
 import org.sujinde.utils.RBUtil;
 import org.sujinde.utils.ToastUtil;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 /**
@@ -36,6 +43,7 @@ public class MainActivityFragment extends Fragment implements MainViewIF {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initVariable();
+
 	}
 
 	void initVariable() {
