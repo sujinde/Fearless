@@ -1,16 +1,28 @@
 package org.sujinde.presenter;
 
 import org.sujinde.frg.MainActivityFragment;
+import org.sujinde.helpers.GlideHep;
 import org.sujinde.model.QRResult;
 import org.sujinde.model.User;
+import org.sujinde.module.DaggerFearlessComp;
+import org.sujinde.module.FearlessComp;
 import org.sujinde.network.BaiduApi;
 import org.sujinde.network.BaiduService;
 import org.sujinde.network.GitHubApi;
 import org.sujinde.network.GitHubService;
 import org.sujinde.presenter.pi.MainInterface;
 import org.sujinde.utils.Logg;
+import org.sujinde.utils.RBUtil;
 import org.sujinde.whatever.Practise;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+import javax.inject.Inject;
+
+import dagger.Lazy;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +35,9 @@ import rx.schedulers.Schedulers;
  */
 public class MainPresenter implements MainInterface {
 	MainActivityFragment mainActivityFragment;
+	@Inject
+	Lazy<Practise> practiseLazy;
+	FearlessComp fearlessComp;
 
 	public MainPresenter(MainActivityFragment mainActivityFragment) {
 		this.mainActivityFragment = mainActivityFragment;
@@ -95,5 +110,18 @@ public class MainPresenter implements MainInterface {
 				Logg.i(qrResult.getData() + "--Yes");
 			}
 		});
+	}
+
+	@Override
+	public void testDagger() {
+		fearlessComp = DaggerFearlessComp.create();
+		fearlessComp.inject(this);
+//		practiseLazy.get().rxJava();
+//		fearlessComp.getPra().rxJava();
+	}
+
+	@Override
+	public void testRxBus() {
+		RBUtil.getInstance().send("Hello World !");
 	}
 }

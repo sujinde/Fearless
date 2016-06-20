@@ -8,6 +8,9 @@ import com.orhanobut.logger.Logger;
 
 import org.sujinde.utils.Logg;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,6 +21,9 @@ import rx.schedulers.Schedulers;
  * Created by Mr.SuJinde on 2016/6/15.
  */
 public class Practise {
+
+	public Practise() {
+	}
 
 	public String rxJava() {
 		String tmp = "";
@@ -44,30 +50,30 @@ public class Practise {
 				System.out.print(s);
 			}
 		});
-		Observable.just("fuck", "me", "baby").subscribe(new Action1<String>() {
-			@Override
-			public void call(String s) {
-				Logg.i(s);
-				Logger.i(s, "adf");
-			}
-		});
-		Observable.just("Hello", "World").subscribe(new Subscriber<String>() {
-			@Override
-			public void onCompleted() {
-
-			}
-
-			@Override
-			public void onError(Throwable e) {
-
-			}
-
-			@Override
-			public void onNext(String s) {
-				Log.i("fu", s);
-				Logg.i(s);
-			}
-		});
+//		Observable.just("fuck", "me", "baby").subscribe(new Action1<String>() {
+//			@Override
+//			public void call(String s) {
+//				Logg.i(s);
+//				Logger.i(s, "adf");
+//			}
+//		});
+//		Observable.just("Hello", "World").subscribe(new Subscriber<String>() {
+//			@Override
+//			public void onCompleted() {
+//
+//			}
+//
+//			@Override
+//			public void onError(Throwable e) {
+//
+//			}
+//
+//			@Override
+//			public void onNext(String s) {
+//				Log.i("fu", s);
+//				Logg.i(s);
+//			}
+//		});
 		return tmp;
 	}
 }

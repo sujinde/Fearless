@@ -7,4 +7,8 @@ public interface MainInterface {
 	void rxJava();
 
 	void testNet();
+
+	void testDagger();
+
+	void testRxBus();
 }

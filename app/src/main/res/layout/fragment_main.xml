@@ -13,4 +13,9 @@
 		android:layout_height="wrap_content"
 		android:text="Hello World!"/>
 
+	<ImageView
+		android:layout_width="match_parent"
+		android:id="@+id/iv"
+		android:layout_height="wrap_content"/>
+
 </RelativeLayout>

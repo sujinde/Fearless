@@ -7,6 +7,10 @@ import com.facebook.stetho.Stetho;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
+import org.sujinde.module.DaggerFearlessComp;
+import org.sujinde.module.FearlessComp;
+import org.sujinde.module.FearlessModule;
+
 /**
  * Created by Mr.SuJinde on 2016/6/15.
  */
@@ -24,6 +28,7 @@ public class FearlessApp extends Application {
 		context = getApplicationContext();
 		initLogger();
 		initStethoscope();
+		initDagger();
 	}
 
 	void initStethoscope() {
@@ -36,5 +41,10 @@ public class FearlessApp extends Application {
 				.hideThreadInfo()               // default shown
 				.methodOffset(0)
 				.logLevel(LogLevel.FULL);       // default LogLevel.FULL
+	}
+
+	void initDagger() {
+//		FearlessComp fearlessComp = DaggerFearlessComp.builder().fearlessModule(new FearlessModule()).build();
+
 	}
 }

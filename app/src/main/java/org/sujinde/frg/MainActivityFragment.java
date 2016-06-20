@@ -1,21 +1,30 @@
 package org.sujinde.frg;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import org.sujinde.fearless.R;
+import org.sujinde.helpers.GlideHep;
 import org.sujinde.presenter.MainPresenter;
+import org.sujinde.utils.RBUtil;
 import org.sujinde.utils.ToastUtil;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import rx.functions.Action1;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment implements MainViewIF {
 	MainPresenter mainPresenter;
+	@Bind(R.id.iv)
+	ImageView iv;
 
 	public MainActivityFragment() {
 	}
@@ -33,19 +42,42 @@ public class MainActivityFragment extends Fragment implements MainViewIF {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_main, container, false);
+		View view = inflater.inflate(R.layout.fragment_main, container, false);
+		ButterKnife.bind(this, view);
+		return view;
 	}
 
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mainPresenter.rxJava();
+//		mainPresenter.rxJava();
 //		mainPresenter.testNet();
-
+//		mainPresenter.testDagger();
+		GlideHep.simPleShow("http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg", iv);
+		responseRxBus();
+		mainPresenter.testRxBus();
 	}
 
 	@Override
 	public void setText(String s) {
 		ToastUtil.shrMsg(s);
+	}
+
+	@Override
+	public void responseRxBus() {
+		RBUtil.getInstance().toObservable().subscribe(new Action1<Object>() {
+			@Override
+			public void call(Object o) {
+				if (o instanceof String) {
+					ToastUtil.shrMsg(o.toString());
+				}
+			}
+		});
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		ButterKnife.unbind(this);
 	}
 }

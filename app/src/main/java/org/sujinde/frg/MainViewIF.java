@@ -5,4 +5,6 @@ package org.sujinde.frg;
  */
 public interface MainViewIF {
 	void setText(String s);
+
+	void responseRxBus();
 }
