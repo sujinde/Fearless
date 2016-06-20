@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
+
 import org.sujinde.fearless.R;
 import org.sujinde.helpers.GlideHep;
 import org.sujinde.presenter.MainPresenter;
@@ -56,6 +59,12 @@ public class MainActivityFragment extends Fragment implements MainViewIF {
 		GlideHep.simPleShow("http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg", iv);
 		responseRxBus();
 		mainPresenter.testRxBus();
+		RxView.clicks(iv).subscribe(new Action1<Void>() {
+			@Override
+			public void call(Void aVoid) {
+				ToastUtil.shrMsg("Bite Me !");
+			}
+		});
 	}
 
 	@Override
